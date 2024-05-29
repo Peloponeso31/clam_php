@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="root">
+    <div id="root" class="w-screen h-screen">
         <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
         <div class="size-full flex flex-col gap-y-5">
             <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
@@ -92,7 +92,7 @@
                             <?php
                                 foreach ($pdo->query("SELECT * FROM `talentos`") as $row) {
                                     // Acciones
-                                    echo '<td class="border border-slate-400 px-2 py-1 text-center">
+                                    echo '<tr><td class="border border-slate-400 px-2 py-1 text-center">
                                             <div class="flex flex-row justify-center gap-3"><a
                                                     class="rounded-full hover:bg-gray-200 p-2" href="/update/12"><svg
                                                         stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -185,7 +185,7 @@
                                     // comision_intermediario
                                     echo '<td class="border border-slate-400 px-2 py-1">
                                           <input type="text" class="focus:outline-none size-full" readonly="" value="'.$row['comision_intermediario'].'">
-                                      </td>';
+                                      </td></tr>';
                                 }
                             ?>
                         </tbody>

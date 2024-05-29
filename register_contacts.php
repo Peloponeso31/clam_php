@@ -26,7 +26,7 @@ include 'controller/register_update_contacts.php';
 </head>
 
 <body class="">
-<div id="root">
+<div id="root" class="w-screen h-screen">
     <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
     <div class="size-full flex flex-col gap-y-5">
         <div class="shadow-md w-full max-h-[80px] h-full p-5 flex flex-row items-center"><a

@@ -23,15 +23,18 @@
 </head>
 
 <body>
-    <div id="root">
+    <div id="root" class="w-screen h-screen">
         <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
         <div class="size-full flex flex-col gap-y-5">
             <div class="shadow-md w-full max-h-[80px] h-full p-5 flex flex-row items-center">
                 <a class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="/">Regresar</a></div>
-            <form class="w-full grid grid-cols-3 grid-rows-8 gap-5 place-items-center overflow-y-hidden p-5">
+            <form class="w-full grid grid-cols-3 grid-rows-8 gap-5 place-items-center overflow-y-hidden p-5"
+                action="controller/register_artist.php"
+                method="post">
                 <div
                     class="overflow-hidden relative flex flex-col size-full justify-center items-center rounded-2xl border border-black drop-shadow-md col-span-1 row-span-3">
-                    <input type="file" accept="image/*" id="input_imagenes" hidden="">
+                    <input type="text" name="artista[foto]" id="base64_image" hidden>
+                    <input type="file" accept="image/*" id="input_imagenes" hidden required onchange="convert_img_base64()">
                     <button
                         class="size-full flex justify-center items-center text-black focus:outline-none p-5 text-center bg-white"
                         onClick="document.getElementById('input_imagenes').click()"
@@ -40,7 +43,7 @@
                     </button>
                 </div>
 
-                <input type="text" name="nombre"
+                <input type="text" name="artista[nombre]" required
                     class="col-span-2 p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
                     placeholder="Nombre del talento">
                 <div class="relative size-full"><label
@@ -48,7 +51,10 @@
                         Tipo del talento<span class="text-red-500">*</span></label>
                     <div class="size-full z-[500]">
                         <div class="relative font-montserrat size-full">
-                            <select class="border border-black rounded-md w-full text-start py-1 px-3 cursor-pointer text-2xl  col-span-2 px-4 rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center max-h-[100px] size-full"  id="tipos_talentos" onchange="hide_nonselected_elements()">
+                            <select class="border border-black rounded-md w-full text-start py-1 px-3 cursor-pointer text-2xl  col-span-2 px-4 rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center max-h-[100px] size-full"
+                                    id="tipos_talentos"
+                                    name="artista[tipo]"
+                                    onchange="hide_nonselected_elements()">
                                 <?php 
                                     foreach ($pdo->query("SELECT * FROM `catalogo_tipo_talento`") as $fila) {
                                         echo '<option value="' . $fila['id'] . '">' . $fila['tipo'] . '</option>';
@@ -71,7 +77,8 @@
                         talento<span class="text-red-500">*</span></label>
                     <div class="size-full z-[500]">
                     <div class="relative font-montserrat size-full">
-                            <select class="border border-black rounded-md w-full text-start py-1 px-3 cursor-pointer text-2xl  col-span-2 px-4 rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center max-h-[100px] size-full"  name="" id="generos">
+                            <select class="border border-black rounded-md w-full text-start py-1 px-3 cursor-pointer text-2xl  col-span-2 px-4 rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center max-h-[100px] size-full"
+                                    name="artista[genero]" id="generos">
                                 <?php 
                                     foreach ($pdo->query("SELECT * FROM `talento_generos`") as $fila) {
                                         echo '<option name="'.$fila['tipo_talento_id'].'" value="' . $fila['id'] . '">' . $fila['genero'] . '</option>';
@@ -87,9 +94,13 @@
                             </svg>
                         </div>
                     </div>
-                </div><textarea
+                </div>
+                <textarea
                     class="resize-none col-span-2 row-span-2 p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
-                    name="semblanza"></textarea><input type="text" name="video"
+                    name="artista[semblanza]" required>
+
+                </textarea>
+                <input type="text" name="artista[video]" required
                     class="p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
                     placeholder="Video">
                 <div class="row-span-3 grid grid-cols-1 grid-rows-3 size-full gap-5">
@@ -112,13 +123,17 @@
                             <p>STAFF \ CREW</p>
                         </div>
                     </a>
-                </div><span class="col-span-2"></span><input type="text" name="costo_artista"
+                </div><span class="col-span-2"></span>
+                <input type="text" name="artista[costo_artista]" required
                     class="p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
-                    placeholder="Costo Artista"><input type="text" name="comision_evento"
+                    placeholder="Costo Artista">
+                <input type="text" name="artista[comision_evento]" required
                     class="p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
-                    placeholder="Comisión Evento"><input type="text" name="costo_produccion"
+                    placeholder="Comisión Evento">
+                <input type="text" name="artista[costo_produccion]" required
                     class="p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
-                    placeholder="Costo Producción"><input type="text" name="comision_intermediario"
+                    placeholder="Costo Producción">
+                <input type="text" name="artista[comision_intermediario]" required
                     class="p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
                     placeholder="Comisión Intermediario">
                 <section class="w-full py-10 col-span-full flex justify-center"><button type="submit"
@@ -149,6 +164,19 @@
                 option.style.display = 'none';
             }
         });
+    }
+
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+    });
+
+    async function convert_img_base64() {
+        const file = document.getElementById('input_imagenes').files[0];
+        const base64_image = document.getElementById('base64_image');
+        base64_image.value = await toBase64(file);
     }
 
     hide_nonselected_elements();
