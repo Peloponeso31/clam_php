@@ -12,7 +12,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,8 @@
         <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
         <div class="size-full flex flex-col gap-y-5">
             <div class="shadow-md w-full max-h-[80px] h-full p-5 flex flex-row items-center">
-                <a class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="/">Regresar</a></div>
+                <a class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="/"> Regresar </a>
+            </div>
             <form class="w-full grid grid-cols-3 grid-rows-8 gap-5 place-items-center overflow-y-hidden p-5"
                 action="controller/register_artist.php"
                 method="post">
@@ -153,7 +154,7 @@
         first = true;
 
         Array.prototype.forEach.call(generos, function (option) {
-            if (option.getAttribute('name') == tipo_talento_selected) {
+            if (option.getAttribute('name') === tipo_talento_selected) {
                 if (first) {
                     option.selected = true;
                     first = false;

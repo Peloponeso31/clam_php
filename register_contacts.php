@@ -34,17 +34,18 @@ include 'controller/register_update_contacts.php';
         <form id="elementos_agregar" hidden></form>
         <form action="/register_contacts.php" method="POST" class="size-full overflow-hidden flex flex-col p-5">
             <section class="grid grid-cols-3 grid-rows-2 gap-5">
-                <div class="flex flex-row items-center gap-5"><span
-                            class="h-full flex-1 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl font-bold opacity-50">
-              <p>7+</p>
-            </span><span
-                            class="h-full flex-1 bg-green-500 rounded-xl border-2 border-red-600 flex items-center justify-center text-white text-xl font-bold opacity-100">
-              <p>0-3</p>
-            </span><span
-                            class="h-full flex-1 bg-[#ffff00] rounded-xl border-2 border-red-600 flex items-center justify-center text-black text-xl font-bold opacity-50">
-              <p>4-6</p>
-            </span>
+                <div class="flex flex-row items-center gap-5">
+                    <span class="h-full flex-1 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl font-bold opacity-50">
+                        <p>7+</p>
+                    </span>
+                    <span class="h-full flex-1 bg-green-500 rounded-xl border-2 border-red-600 flex items-center justify-center text-white text-xl font-bold opacity-100">
+                        <p>0-3</p>
+                    </span>
+                    <span class="h-full flex-1 bg-[#ffff00] rounded-xl border-2 border-red-600 flex items-center justify-center text-black text-xl font-bold opacity-50">
+                        <p>4-6</p>
+                    </span>
                 </div>
+
                 <input type="text" name="nombre_talento"
                        class="col-span-2 p-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center size-full"
                        placeholder="Nombre del talento" value="<?php
@@ -64,15 +65,14 @@ include 'controller/register_update_contacts.php';
                     </div>
                 </div>
                 <div class="col-span-2 row-span-1 gap-5 flex items-center justify-center">
-                    <button
-                            class="transition duration-300 ease-in-out py-2 px-8 bg-blue-600 hover:bg-blue-500 text-white text-lg rounded-lg">
+                    <button class="transition duration-300 ease-in-out py-2 px-8 bg-blue-600 hover:bg-blue-500 text-white text-lg rounded-lg">
                         Verificar nombre
                     </button>
                     <button class="transition duration-300 ease-in-out py-2 px-8 bg-blue-600 hover:bg-blue-500 text-white text-lg rounded-lg"
-                    value="<?php
-                    $numero_nuevos = isset($_POST["numero_nuevos"]) ? (int) $_POST["numero_nuevos"] : 0;
-                    echo $numero_nuevos;
-                    ?>" name="numero_nuevos" onclick="this.value++">
+                            value="<?php
+                            $numero_nuevos = isset($_POST["numero_nuevos"]) ? (int)$_POST["numero_nuevos"] : 0;
+                            echo $numero_nuevos;
+                            ?>" name="numero_nuevos" onclick="this.value++">
                         Añadir contacto
                     </button>
                 </div>
@@ -157,7 +157,7 @@ include 'controller/register_update_contacts.php';
                         
                         <button class=\"bg-red-500 hover:bg-red-400 transition duration-300 ease-in-out rounded-md text-xl text-white\"
                           name='numero_nuevos'
-                          value='".($numero_nuevos - 1)."'>
+                          value='" . ($numero_nuevos - 1) . "'>
                           Remover contacto
                         </button>
                         <input type='hidden' name='nuevos_contactos[{$i}][id_talento]' value='{$id_talento}'>
