@@ -1,7 +1,7 @@
 <?php
     header('Content-Type: text/html; charset=utf-8');
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=clam", 'root', '');
+        $pdo = new PDO("mysql:host=localhost;dbname=syslamco_clam", 'syslamco_franciscotv', 'L]ig7Uq?aw@!');
         $pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         $pdo->exec("set names utf8mb4");
     }
@@ -28,7 +28,7 @@
         <div class="size-full flex flex-col gap-y-5">
             <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
             <div class="shadow-md w-full max-h-[80px] h-full p-5 flex flex-row items-center"><a
-                    class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="/">Regresar</a></div>
+                    class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="./">Regresar</a></div>
             <div class=" flex flex-wrap gap-5 items-center px-8 py-5"><input
                     class="py-2 px-4 text-lg rounded-md border border-black drop-shadow-md placeholder:text-red-600 placeholder:text-center w-[370px]"
                     placeholder="Nombre del talento">
@@ -92,17 +92,25 @@
                             <?php
                                 foreach ($pdo->query("SELECT * FROM `talentos`") as $row) {
                                     // Acciones
-                                    echo '<tr><td class="border border-slate-400 px-2 py-1 text-center">
-                                            <div class="flex flex-row justify-center gap-3"><a
-                                                    class="rounded-full hover:bg-gray-200 p-2" href="/update/12"><svg
-                                                        stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                        viewBox="0 0 24 24" height="1.5em" width="1.5em"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill="none" d="M0 0h24v24H0z"></path>
-                                                        <path
-                                                            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z">
-                                                        </path>
-                                                    </svg></a><button class="rounded-full hover:bg-gray-200 p-2"><svg
+                                    echo '<tr>
+                                            <td class="border border-slate-400 px-2 py-1 text-center">
+                                            <div class="flex flex-row justify-center gap-3">
+                                                <form action="./register_artist_controller.php" method="POST">
+                                                    <button class="rounded-full hover:bg-gray-200 p-2"
+                                                            name="id_talento"
+                                                            value='.$row['id'].'>
+                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                             viewBox="0 0 24 24" height="1.5em" width="1.5em"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill="none" d="M0 0h24v24H0z"></path>
+                                                            <path
+                                                                d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z">
+                                                            </path>
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                               
+                                                <button class="rounded-full hover:bg-gray-200 p-2"><svg
                                                         stroke="currentColor" fill="currentColor" stroke-width="0"
                                                         viewBox="0 0 24 24" height="1.5em" width="1.5em"
                                                         xmlns="http://www.w3.org/2000/svg">

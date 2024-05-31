@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=clam", 'root', '');
+    $pdo = new PDO("mysql:host=localhost;dbname=syslamco_clam", 'syslamco_franciscotv', 'L]ig7Uq?aw@!');
     $pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("set names utf8mb4");
@@ -29,9 +29,9 @@ include 'controller/register_update_staff.php';
     <div style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;"></div>
     <div class="size-full flex flex-col gap-y-5">
         <div class="shadow-md w-full max-h-[80px] h-full p-5 flex flex-row items-center">
-            <a class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="/"> Regresar </a>
+            <a class="text-lg bg-white p-2 relative hover:bg-gray-200 rounded-md" href="./"> Regresar </a>
         </div>
-        <form action="/register_staff.php" method="POST" class="size-full overflow-hidden flex flex-col p-5">
+        <form action="./register_staff.php" method="POST" class="size-full overflow-hidden flex flex-col p-5">
             <section class="grid grid-cols-3 grid-rows-2 gap-5">
                 <div class="flex flex-row items-center gap-5">
                         <span class="h-full flex-1 bg-red-600 rounded-xl flex items-center justify-center text-white text-xl font-bold opacity-50">
